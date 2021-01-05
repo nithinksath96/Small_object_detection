@@ -68,6 +68,12 @@ class GridAssigner(BaseAssigner):
         Returns:
             :obj:`AssignResult`: The assign result.
         """
+        # import pdb
+        # pdb.set_trace()
+        # # if(gt_bboxes == None):
+        # #     gt_bboxes = []
+        # print(gt_bboxes.size())
+        # print(bboxes.size())
         num_gts, num_bboxes = gt_bboxes.size(0), bboxes.size(0)
 
         # compute iou between all gt and bboxes

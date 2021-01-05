@@ -51,7 +51,8 @@ test_cfg = dict(
     max_per_img=100)
 # dataset settings
 dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+#data_root = 'data/coco/'
+data_root = '/scratch/achald/coco/'
 img_norm_cfg = dict(mean=[0, 0, 0], std=[255., 255., 255.], to_rgb=True)
 train_pipeline = [
     dict(type='LoadImageFromFile', to_float32=True),
@@ -110,12 +111,24 @@ data = dict(
 optimizer = dict(type='SGD', lr=0.001, momentum=0.9, weight_decay=0.0005)
 optimizer_config = dict(grad_clip=dict(max_norm=35, norm_type=2))
 # learning policy
+# lr_config = dict(
+#     policy='step',
+#     warmup='linear',
+#     warmup_iters=2000,  # same as burn-in in darknet
+#     warmup_ratio=0.1,
+#     step=[218, 246])
+# # runtime settings
+# total_epochs = 273
+
 lr_config = dict(
-    policy='step',
+    policy='poly',
     warmup='linear',
     warmup_iters=2000,  # same as burn-in in darknet
     warmup_ratio=0.1,
-    step=[218, 246])
+    by_epoch = False)
+    #step=[218, 246])
 # runtime settings
-total_epochs = 273
+total_epochs = 24
+
 evaluation = dict(interval=1, metric=['bbox'])
+work_dir = '/data2/nsathish/results/work_dirs/yolov3_608_24e'

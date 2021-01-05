@@ -149,6 +149,11 @@ def main():
     if samples_per_gpu > 1:
         # Replace 'ImageToTensor' to 'DefaultFormatBundle'
         cfg.data.test.pipeline = replace_ImageToTensor(cfg.data.test.pipeline)
+
+        
+    cfg.data.test['ann_file']="/data/mengtial/COCO/annotations/instances_val2017.json"
+    cfg.data.test['img_prefix']="/data/mengtial/COCO/val2017/"
+    
     dataset = build_dataset(cfg.data.test)
     data_loader = build_dataloader(
         dataset,
@@ -185,6 +190,9 @@ def main():
                                  args.gpu_collect)
 
     rank, _ = get_dist_info()
+    
+    import pdb
+    pdb.set_trace()
     if rank == 0:
         if args.out:
             print(f'\nwriting results to {args.out}')

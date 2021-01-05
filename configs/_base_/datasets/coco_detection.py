@@ -1,5 +1,10 @@
 dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
+# data_root = 'data/coco/'
+data_root = '/scratch/achald/coco/'#1-4
+#data_root = '/ssd0/nsathish/coco/' #1-9
+#data_root = '/scratch/mengtial/COCO/' #0-23
+#data_root =  '/scratch/jasonzh2/coco/' #V100
+#data_root = '/ssd1/tkhurana/coco/' # 0-19
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 train_pipeline = [

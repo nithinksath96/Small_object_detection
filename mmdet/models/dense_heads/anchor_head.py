@@ -214,10 +214,14 @@ class AnchorHead(BaseDenseHead, BBoxTestMixin):
             return (None, ) * 7
         # assign gt and sample anchors
         anchors = flat_anchors[inside_flags, :]
-
+        # import pdb
+        # pdb.set_trace()
+        # print("---------------------------------------------------------------------------------")
         assign_result = self.assigner.assign(
             anchors, gt_bboxes, gt_bboxes_ignore,
             None if self.sampling else gt_labels)
+        #assign_result = self.assigner.assign(anchors, valid_flags, gt_bboxes, gt_labels)
+            
         sampling_result = self.sampler.sample(assign_result, anchors,
                                               gt_bboxes)
 
@@ -333,6 +337,8 @@ class AnchorHead(BaseDenseHead, BBoxTestMixin):
             gt_bboxes_ignore_list = [None for _ in range(num_imgs)]
         if gt_labels_list is None:
             gt_labels_list = [None for _ in range(num_imgs)]
+        # import pdb
+        # pdb.set_trace()
         results = multi_apply(
             self._get_targets_single,
             concat_anchor_list,

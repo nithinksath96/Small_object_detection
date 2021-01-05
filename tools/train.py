@@ -80,6 +80,8 @@ def parse_args():
 
 
 def main():
+    # import pdb
+    # pdb.set_trace()
     args = parse_args()
 
     cfg = Config.fromfile(args.config)
